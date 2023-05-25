@@ -13,7 +13,6 @@ console.log(btnsOpenModal);
 
 // overall function to open the modal
 const openModal = function () {
-  console.log('Button clicked');
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
@@ -34,3 +33,20 @@ const closeModal = function () {
 btnCloseModal.addEventListener('click', closeModal);
 // this is also turning off the modal and overlay by clicking area around the window
 overlay.addEventListener('click', closeModal);
+
+// The last way to exit the modal window will be using a ESC key
+// A keyboard event (global events) - addEventListener
+// We are also looking at the event obejct created by JS, to action on the keypress
+// So we have to give the function a paramater, so when the function is actioned by JS it will have an argument to work with
+document.addEventListener('keydown', function (e) {
+  // but since we want to close Modal window only when it's open, we have to see if class is active, we also invert the value with ! so it reads as not hidden
+  // if (e.key === 'Escape') {
+  //   if (!modal.classList.contains('.hidden')) {
+  //     closeModal();
+  // Here we have to call this function, to ensure it will happen
+
+  // not to repeat the if's we can write the if function like this
+  if (e.key === 'Escape' && !modal.classList.contains('.hidden')) {
+    closeModal();
+  }
+});
